@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>about</title>
+  <style>
+      .gallery{
+        height: 400px;
+      
+        overflow: scroll;
+      }
+  </style>
+  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+</head>
+
+<body>
+  <header id="header">
+    <h1><a href="http://127.0.0.1:8000/">Future Imperfect</a></h1>
+    <nav class="links">
+      <ul>
+        <li><a href="http://127.0.0.1:8000/">Main</a></li>
+        <li><a href="/admin">admin</a></li>
+      </ul>
+    </nav>
+   
+  </header>
+  <h1>Gallery</h1>
+  <div class="gallery">
+    
+  {% for i in img%}
+    <h3>{{ i.title }}</h3>
+    <img src="{{ i.image.url }}" alt="" width="30%">
+   {% endfor %}
+  </div>
+  <ul>
+    <h1>Users</h1>
+  {% for i in users%}
+     <li>{{i.id}}) {{i.username}}</li>
+  {% endfor %}
+   </ul>
+  
+</body>
+</html>

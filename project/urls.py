@@ -6,7 +6,10 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index,name='index'),
-    path('single',single),
+    path('single/<int:id>', single, name='single'),
+    path('about/',about),
+    path('test/<int:num>',test,name='test')
+    
 ]
 
 
