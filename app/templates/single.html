@@ -105,7 +105,7 @@
 								
 							
 							</article>
-
+							
 
 							{%for newDetails in rows%}
                             <article class="post">
@@ -119,11 +119,30 @@
 								
 								
 							</article>
+						
                             {% endfor %}
+							<article class="post">
+								<h1>Coment</h1>
+                                <br>
+								<form method="post" action="{% url 'comments' i.id %}">
+									{% csrf_token %}
+                                     <label>Name:</label>
+									 <input type="text" name="name" />
+                                     <label>Text:</label>
+                                     <input type="text" name="text" />
+                                     <input type="submit" value="Save" />
+									 <br>
+								</form>
+								<h1>Comments</h1>
+                            {% for com in comm%}
+							    <h3>{{com.name}}</h3>
+								<p>{{com.text}}</p>
+                            {% endfor %}
+							</article>
 							<footer>
 								<ul class="stats">
 									<li><a href="#">{{i.counter}}</a></li>
-									<li><a href="#" class="icon solid fa-heart">28</a></li>
+									<li><a href="/like/?id = {{i.id}}" class="icon solid fa-heart">28</a></li>
 									<li><a href="#" class="icon solid fa-comment">128</a></li>
 								</ul>
 							</footer>

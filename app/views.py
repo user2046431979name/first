@@ -5,11 +5,16 @@ from django.shortcuts import HttpResponse
 from django.core.paginator import Paginator 
 # Create your views here.
 def index(request):
+
+    query = ""
+    if request.GET.get('query'):
+        query = request.GET.get('query')
+        rows = News.objects.all().filter(title__icontains = query)
     rows = News.objects.all()
     top_views = News.objects.all().order_by("-counter")[:3]
     mini_post = News.objects.all().order_by("-created_at")[:4]
     p = Paginator(rows, 2)
-
+   
     page_number = 1
     
     
@@ -20,6 +25,7 @@ def index(request):
     next_page = page_number + 1 if (page_number) < len(p.page_range) else 1
 
     previos_page = page_number - 1 if (page_number - 1) != 0 else page_number
+    
     contex = {
         'rows':p.page(page_number),
         'pages':p.page_range,
@@ -31,7 +37,12 @@ def index(request):
 
 
     return render(request,'index.html',contex)
-
+def likes(request):
+    id = request.GET.get('id')
+    row = News.objects.get(id = id)
+    row.like_count += 1
+    row.save()
+    return index(request)
 
 
 def single(request,id):
@@ -39,14 +50,24 @@ def single(request,id):
     rows = NewsDetails.objects.filter(newsobject_id = id)
     images = NewsImages.objects.filter(newsObject_id = id)
 
+    comm = Comments.objects.filter(newsObjects_id = id)
+
     row.counter += 1
     row.save()
     context={
        'i':row,
        'rows':rows,
-       'images':images
+       'images':images,
+       'comm':comm
     }
     return render(request,'single.html',context)
+def comments(request,id):
+    
+    name = request.POST.get('name')
+    text = request.POST.get('text')
+    row = News.objects.get(id=id)
+    Comments.objects.create(newsObject=row, name = name , text = text)
+    return single(request,id)
 def about(request):
     User = get_user_model() 
     User = User.objects.all()
@@ -57,21 +78,22 @@ def about(request):
     }
     return render(request,'about.html',context)
 
-def paginationTest(request):
-    rows = ['einz','zwei','drei','vier','funf']
-    p = Paginator(rows, 1)
-    
-    # Paginator() 
-    # функция page() возвращает страницу
-    
-    page_number = 1
-    
-    if request.GET.get('page'):
-        page_number = int(request.GET.get('page'))
-    
 
+
+"""
+def search(request):
+    #query
+    
+    l = [i for i in range(10000)]
+    query = request.GET.get('query')
+    if query == None:
+        rows = News.objects.filter(title__icontains='first_title')
+    else:
+        rows = News.objects.filter(title__icontains=query)
     context = {
-        'rows':p.page(page_number),
-        'pages':p.page_range
+        'rows':rows,
+        'l':l,
+
     }
-    return render(request,'PaginationTest.html',context)
+    return render(request,'Search.html',context)
+"""

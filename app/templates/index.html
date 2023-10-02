@@ -30,7 +30,7 @@
 				<ul>
 					<li class="search">
 						<a class="fa-search" href="#search">Search</a>
-						<form id="search" method="get" action="#">
+						<form id="search" method="get" action="/">
 							<input type="text" name="query" placeholder="Search">
 						</form>
 					</li>
@@ -75,8 +75,10 @@
 						<li><a href="{% url 'single' i.id%}" class="button large">Continue Reading</a></li>
 					</ul>
 					<ul class="stats">
+						<li><a href="#">General</a></li>
 						<li><a href="{% url 'single' i.id%}">{{i.counter}}</a></li>
-
+						<li><a href="/like/?id = {{i.id}}" class="icon solid fa-heart">{{i.like_count}}</a></li>
+						<li><a href="#" class="icon solid fa-comment">128</a></li>
 					</ul>
 				</footer>
 			</article>

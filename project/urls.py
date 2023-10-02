@@ -8,7 +8,8 @@ urlpatterns = [
     path('',index,name='index'),
     path('single/<int:id>', single, name='single'),
     path('about/',about),
-    path('pagination',paginationTest,name='paginationTest')
+    path('like/',likes,name='like'),
+    path('comment/<int:id>',comments,name='coments'),
     
 ]
 

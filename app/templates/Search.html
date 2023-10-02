@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search</title>
+</head>
+<body>
+  
+    <h1>Search</h1>
+    <form id="search" method="get" action="/">
+        <input type="text" name="query" placeholder="Search">
+    </form>
+    {% for row in rows%}
+        <a href="{% url 'single' row.id%}">{{row.title}}</a><br>
+    {% endfor %}
+</body>
+</html>
