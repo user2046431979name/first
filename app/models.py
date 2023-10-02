@@ -8,20 +8,31 @@ class News(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True,editable = False)
     counter = models.IntegerField(editable=False,default=0,blank=True,null=True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-
-
-
+    author = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,verbose_name='АВТОР')
+    
     def __str__(self):
         return self.title
+    class Meta:
+        verbose_name = 'Новости '
+        verbose_name_plural = 'Новости'
     
 class NewsImages(models.Model):
     newsObject = models.ForeignKey(News,on_delete=models.CASCADE)
     image = models.ImageField()
     def __str__(self):
         return self.newsObject
-    
+    class Meta:
+        verbose_name = 'Фото'
+        verbose_name_plural = 'Новости Фото'
 class Gallery(models.Model):
     title = models.CharField(max_length=200)
     image = models.ImageField()
-    
+
+
+
+class NewsDetails(models.Model):
+    newsobject = models.ForeignKey(News,on_delete=models.CASCADE)
+    title = models.CharField(max_length=250)
+    text = models.TextField()
+    def __str__(self):
+        return f"{self.newsobject.title} - {self.title}"

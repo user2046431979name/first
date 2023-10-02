@@ -4,3 +4,4 @@ from .models import *
 admin.site.register(News)
 admin.site.register(NewsImages)
 admin.site.register(Gallery)
+admin.site.register(NewsDetails)

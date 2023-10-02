@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </style>
 </head>
 <body class="single">
 
@@ -51,28 +53,82 @@
 										<h2><a href="#">{{ i.title }}</a></h2>
 										<p>{{i.description}}</p>
 									</div>
-									<div class="meta">
-										<time class="published" datetime="2015-11-01">{{i.created_at}}</time>
-										<a href="#" class="author"><span class="name">Jane Doe</span></a>
-									</div>
+									   
+										
+										
 								</header>
 								<span class="image featured"><img src="{{i.main_img.url}}" alt=""></span>
 								<p>{{i.text}} </p>
-								{% for i in images%}
-								   <img src="{{i.image.url}}" alt="">
-								   <br>
-								{% endfor %}
-								<footer>
-									<ul class="stats">
-										<li><a href="#">{{i.counter}}</a></li>
-										<li><a href="#" class="icon solid fa-heart">28</a></li>
-										<li><a href="#" class="icon solid fa-comment">128</a></li>
-									</ul>
-								</footer>
-							</article>
-                     
-					</div>
+								<div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" >
+									
+									<div class="carousel-inner">
 
+										{% for i in images%}
+									  <div class="carousel-item" style="height: 550px;">
+										
+										<img src="{{i.image.url}}" alt="" width="1400px" height="550px">
+									</div>
+										{% endfor %}
+										 
+										
+									
+
+
+
+										<div class="carousel-item active" style="height: 550px;">
+
+											<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect></svg>
+											<div class="container">
+											  <div class="carousel-caption text-end">
+												<h1>All images </h1>
+											
+											  </div>
+											</div>
+
+										  </div>
+	
+
+
+
+									</div>
+									<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+									  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									  <span class="visually-hidden">Previous</span>
+									</button>
+									<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next" >
+									  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+									  <span class="visually-hidden">Next</span>
+									</button>
+								  </div>
+								
+						 
+								
+							
+							</article>
+
+
+							{%for newDetails in rows%}
+                            <article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">{{ newDetails.title }}</a></h2>
+			                       </div>
+									
+								</header>
+								<p>{{newDetails.text}}</p>
+								
+								
+							</article>
+                            {% endfor %}
+							<footer>
+								<ul class="stats">
+									<li><a href="#">{{i.counter}}</a></li>
+									<li><a href="#" class="icon solid fa-heart">28</a></li>
+									<li><a href="#" class="icon solid fa-comment">128</a></li>
+								</ul>
+							</footer>
+					</div>
+                    
 				<!-- Footer -->
 					<section id="footer">
 						<ul class="icons">
@@ -93,7 +149,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script><section id="menu">
-
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 						<!-- Search -->
 							<section>
 								<form class="search" method="get" action="#">
@@ -137,10 +193,6 @@
 									<li><a href="#" class="button large fit" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Log In</a></li>
 								</ul>
 							</section>
-
 					</section>
-
-	
 </body>
-
 </html>
