@@ -2,7 +2,10 @@ from django.shortcuts import render
 from .models import *
 from django.contrib.auth import get_user_model
 from django.shortcuts import HttpResponse
-from django.core.paginator import Paginator 
+from django.core.paginator import Paginator
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView 
 # Create your views here.
 def index(request):
 
@@ -45,12 +48,16 @@ def likes(request):
     return index(request)
 
 
+
+   
+
+
 def single(request,id):
     row = News.objects.get(id = id)
     rows = NewsDetails.objects.filter(newsobject_id = id)
     images = NewsImages.objects.filter(newsObject_id = id)
 
-    comm = Comments.objects.filter(newsObjects_id = id)
+    comm = Comments.objects.filter(newsObject_id = id)
 
     row.counter += 1
     row.save()
@@ -77,6 +84,48 @@ def about(request):
         'users':User
     }
     return render(request,'about.html',context)
+
+class SignUp(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

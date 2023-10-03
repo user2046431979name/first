@@ -15,15 +15,22 @@
 
 	<!-- Wrapper -->
 	<div id="wrapper">
-
+ 
 		<!-- Header -->
 		<header id="header">
 			<h1><a href="index.html">Future Imperfect</a></h1>
 			<nav class="links">
 				<ul>
 					<li><a href="http://127.0.0.1:8000/">Home</a></li>
-					<li><a href="admin">Admin</a></li>
-
+					
+                   
+					{% if user.is_authenticated %}
+                        <li><a href="admin">{{ user.username|default:'Guest' }}</a></li>
+						<li><a href="{% url 'logout' %}">ВЫЙТИ</a></li>
+                    {% else %}
+					<li><a href="{% url 'signup' %}">Регистрация</a></li>
+                    <li><a href="{% url 'login' %}">Войти</a></li>
+					{% endif %}
 				</ul>
 			</nav>
 			<nav class="main">
@@ -77,7 +84,7 @@
 					<ul class="stats">
 						<li><a href="#">General</a></li>
 						<li><a href="{% url 'single' i.id%}">{{i.counter}}</a></li>
-						<li><a href="/like/?id = {{i.id}}" class="icon solid fa-heart">{{i.like_count}}</a></li>
+						<li><a href="/like/?id={{i.id}}" class="icon solid fa-heart">{{i.like_count}}</a></li>
 						<li><a href="#" class="icon solid fa-comment">128</a></li>
 					</ul>
 				</footer>
@@ -440,11 +447,11 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<!-- Pagination -->
     
 			<ul class="actions pagination">
-				<li><a href="?page={{previosP}}" class="button large next">Previous Page</a></li>
+				<li><a href="http://127.0.0.1:8000/?page={{previosP}}" class="button large next">Previous Page</a></li>
 				 {% for i in pages%}
-				          <a href="?page={{i}}" class="button large next">{{i}}</a>
+				          <a href="http://127.0.0.1:8000/?page={{i}}" class="button large next">{{i}}</a>
 				 {% endfor %}
-				<li><a href="?page={{nextP}}" name = 'nextPage' class="button large next">Next Page</a></li>
+				<li><a href="http://127.0.0.1:8000/?page={{nextP}}" name = 'nextPage' class="button large next">Next Page</a></li>
 			</ul>
 		
         
@@ -504,7 +511,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.
 				</p>
 				<ul class="actions">
-					<li><a href="about/" class="button">Learn More</a></li>
+					<li><a href="http://127.0.0.1:8000/about/" class="button">Learn More</a></li>
 				</ul>
 			</section>
 
@@ -526,12 +533,12 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	</div>
 
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<section id="menu">
+	
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/browser.min.js' %}"></script>
+	<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+	<script src="{% static 'assets/js/util.js' %}"></script>
+	<script src="{% static 'assets/js/main.js' %}"></script>
 
 		<!-- Search -->
 		<section>
@@ -545,28 +552,11 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<ul class="links">
 				<li>
 					<a href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-						<h3>Lorem ipsum</h3>
-						<p>Feugiat tempus veroeros dolor</p>
+						<h3>{{ user.username|default:'Guest' }}</h3>
+					
 					</a>
 				</li>
-				<li>
-					<a href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-						<h3>Dolor sit amet</h3>
-						<p>Sed vitae justo condimentum</p>
-					</a>
-				</li>
-				<li>
-					<a href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-						<h3>Feugiat veroeros</h3>
-						<p>Phasellus sed ultricies mi congue</p>
-					</a>
-				</li>
-				<li>
-					<a href="#" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-						<h3>Etiam sed consequat</h3>
-						<p>Porta lectus amet ultricies</p>
-					</a>
-				</li>
+				
 			</ul>
 		</section>
 

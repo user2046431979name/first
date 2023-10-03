@@ -3,8 +3,11 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 from app.views import * 
+from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('signup/',SignUp.as_view(),name='signup'),
     path('',index,name='index'),
     path('single/<int:id>', single, name='single'),
     path('about/',about),
