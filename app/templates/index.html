@@ -22,10 +22,12 @@
 			<nav class="links">
 				<ul>
 					<li><a href="http://127.0.0.1:8000/">Home</a></li>
-					
+					{% if is_admin%}
+					    <li><a href="admin/">Страница администратора</a></li>
+                    {% endif %}
                    
 					{% if user.is_authenticated %}
-                        <li><a href="admin">{{ user.username|default:'Guest' }}</a></li>
+                        <li><a>{{ user.username|default:'Guest' }}</a></li>
 						<li><a href="{% url 'logout' %}">ВЫЙТИ</a></li>
                     {% else %}
 					<li><a href="{% url 'signup' %}">Регистрация</a></li>

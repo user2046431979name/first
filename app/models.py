@@ -40,3 +40,9 @@ class NewsDetails(models.Model):
     text = models.TextField()
     def __str__(self):
         return f"{self.newsobject.title} - {self.title}"
+
+class Admins(models.Model):
+    selectedUser = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,unique=True)
+    
+
+

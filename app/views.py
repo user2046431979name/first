@@ -8,7 +8,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView 
 # Create your views here.
 def index(request):
-
+    is_admin = False
+    if request.user.is_authenticated:
+        try:
+            role = Admins.objects.get(selectedUser = request.user.is_authenticated)
+            is_admin = False
+        except:
+            is_admin = True
+    
     query = ""
     if request.GET.get('query'):
         query = request.GET.get('query')
@@ -35,7 +42,8 @@ def index(request):
         'nextP':next_page,
         'previosP':previos_page,
         'top_views':top_views,
-        'mini_post':mini_post
+        'mini_post':mini_post,
+        'is_admin':is_admin
     }
 
 
