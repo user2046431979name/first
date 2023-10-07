@@ -1,15 +1,7 @@
+{% extends 'home.html'%}
 {% load static %}
-<head>
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
-    
-</head>
-    
-
-
-<body style="position: absolute; left: 35%; top: 15%; background: linear-gradient(90deg,aqua,white);">
-    <div class="registr" style="width: 400px; height:500px; text-align: center; border: 2px solid black; border-radius: 9px;">
-        <h1>login</h1>
-    <form method="post" action="">
+{% block content%}
+    <form method="post">
         {% csrf_token %}
          <table>
             {{ form.as_p }}
@@ -19,6 +11,4 @@
             </tr>                
           </table>
     </form>
-    </div>
-</body>
-</html>
+{% endblock %}

@@ -14,7 +14,29 @@
 <body class="is-preload">
 
 	<!-- Wrapper -->
-	
+	<header id="header">
+		<h1><a href="http://127.0.0.1:8000/">Future Imperfect</a></h1>
+		<nav class="links">
+			<ul>
+				<li><a href="http://127.0.0.1:8000/">Main</a></li>
+				
+			   
+			</ul>
+		</nav>
+		<nav class="main">
+			<ul>
+				<li class="search">
+					<a class="fa-search" href="#search">Search</a>
+					<form id="search" method="get" action="#">
+						<input type="text" name="query" placeholder="Search">
+					</form>
+				</li>
+				<li class="menu">
+					<a class="fa-bars" href="#menu">Menu</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
 	<!-- Scripts -->
 	
 	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
@@ -27,25 +49,9 @@
 		
 
 		<!-- Links -->
-		<section>
-			<ul class="links">
-				<li>
-					<a href="http://127.0.0.1:8000/accounts/login/" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
-						<h3>{{ user.username|default:'Guest' }}</h3>
-					
-					</a>
-				</li>
-				
-			</ul>
-		</section>
-
-		<!-- Actions -->
-		<section>
-			<ul class="actions stacked">
-				<li><a href="http://127.0.0.1:8000/accounts/login/" class="button large fit" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">LogIn</a></li>
-			</ul>
-		</section>
-
+		
+	
+		{% block content%} {% endblock %}
 	</section>
     <section id="footer">
         <ul class="icons">
@@ -55,7 +61,7 @@
           <li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
           <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
-        <p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+        
       </section>
 
 </body>

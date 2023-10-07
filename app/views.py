@@ -6,21 +6,26 @@ from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView 
+
 # Create your views here.
 def index(request):
+    about_images = Gallery.objects.all()[:5]
     is_admin = False
+
     if request.user.is_authenticated:
         try:
-            role = Admins.objects.get(selectedUser = request.user.is_authenticated)
-            is_admin = False
-        except:
+            role = Admins.objects.get(selectedUser=request.user)
             is_admin = True
-    
+        except:
+            pass
     query = ""
+   
+    rows = News.objects.all()
     if request.GET.get('query'):
         query = request.GET.get('query')
         rows = News.objects.all().filter(title__icontains = query)
-    rows = News.objects.all()
+    
+    
     top_views = News.objects.all().order_by("-counter")[:3]
     mini_post = News.objects.all().order_by("-created_at")[:4]
     p = Paginator(rows, 2)
@@ -43,7 +48,8 @@ def index(request):
         'previosP':previos_page,
         'top_views':top_views,
         'mini_post':mini_post,
-        'is_admin':is_admin
+        'is_admin':is_admin,
+        'about_images':about_images
     }
 
 

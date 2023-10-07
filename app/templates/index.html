@@ -22,7 +22,7 @@
 			<nav class="links">
 				<ul>
 					<li><a href="http://127.0.0.1:8000/">Home</a></li>
-					{% if is_admin%}
+					{% if is_admin %}
 					    <li><a href="admin/">Страница администратора</a></li>
                     {% endif %}
                    
@@ -51,7 +51,7 @@
 		</header>
 
 		<!-- Menu -->
-
+      
 
 		<!-- Main -->
 		<div id="main">
@@ -458,7 +458,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 		
         
 		</div>
-
+ 
 		<!-- Sidebar -->
 		<section id="sidebar">
 
@@ -515,6 +515,9 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				<ul class="actions">
 					<li><a href="http://127.0.0.1:8000/about/" class="button">Learn More</a></li>
 				</ul>
+				{% for img in about_images%}
+                    <img src="{{img.image.url}}" style="height: 80px;"> 
+                {% endfor %}
 			</section>
 
 			<!-- Footer -->
